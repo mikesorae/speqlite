@@ -32,6 +32,8 @@ Workflow:
 func main() {
 	rootCmd.AddCommand(
 		newInitCmd(),
+		newImportCmd(),
+		newPlanCmd(),
 	)
 
 	if err := rootCmd.Execute(); err != nil {
