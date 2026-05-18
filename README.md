@@ -1,4 +1,4 @@
-# Speclite
+# speqlite
 
 [![Go Version](https://img.shields.io/badge/go-1.21%2B-blue?logo=go)](https://go.dev)
 [![Build](https://img.shields.io/github/actions/workflow/status/mikesorae/speqlite/ci.yml?branch=main&label=build)](https://github.com/mikesorae/speqlite/actions)
