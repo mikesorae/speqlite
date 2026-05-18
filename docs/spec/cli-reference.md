@@ -1,6 +1,6 @@
 # CLI Reference
 
-Complete reference for all `speclite` commands, flags, exit codes, and output formats.
+Complete reference for all `speqlite` commands, flags, exit codes, and output formats.
 
 ---
 
@@ -33,14 +33,14 @@ These flags are available on every command.
 
 ---
 
-## `speclite init`
+## `speqlite init`
 
 Initialise a new Speclite workspace in the current directory.
 
 ### Synopsis
 
 ```
-speclite init [flags]
+speqlite init [flags]
 ```
 
 ### Flags
@@ -78,14 +78,14 @@ Initialised Speclite workspace at /path/to/project
 
 ---
 
-## `speclite import`
+## `speqlite import`
 
 Parse one or more input files and compute a pending plan. Does **not** mutate state.
 
 ### Synopsis
 
 ```
-speclite import <file> [<file>...] [flags]
+speqlite import <file> [<file>...] [flags]
 ```
 
 ### Flags
@@ -116,7 +116,7 @@ Plan:
   + create CMD-APPLY         [command]  "Apply command"
   ~ update FR-001            [requirement]  "Functional Requirement 1"
 
-3 changes pending. Run `speclite apply` to commit.
+3 changes pending. Run `speqlite apply` to commit.
 ```
 
 ### Output (json)
@@ -144,14 +144,14 @@ Plan:
 
 ---
 
-## `speclite plan`
+## `speqlite plan`
 
 Display the current pending plan from `.spec/state.plan.json`.
 
 ### Synopsis
 
 ```
-speclite plan [flags]
+speqlite plan [flags]
 ```
 
 ### Flags
@@ -186,14 +186,14 @@ Same structure as the `state.plan.json` file. See [Plan & Apply](plan-apply.md).
 
 ---
 
-## `speclite apply`
+## `speqlite apply`
 
 Apply the pending plan to `.spec/state.sqlite`. This is the only command that mutates canonical state.
 
 ### Synopsis
 
 ```
-speclite apply [flags]
+speqlite apply [flags]
 ```
 
 ### Flags
@@ -237,14 +237,14 @@ Applied successfully. State updated.
 
 ---
 
-## `speclite render`
+## `speqlite render`
 
 Generate Markdown projections from state.
 
 ### Synopsis
 
 ```
-speclite render [<spec-id>...] [flags]
+speqlite render [<spec-id>...] [flags]
 ```
 
 ### Flags
@@ -279,7 +279,7 @@ The import command reads Markdown or plain-text files...
 - implements: [FR-001](FR-001.md)
 
 ---
-<!-- speclite:id=CMD-IMPORT speclite:version=3 speclite:hash=abc123 -->
+<!-- speqlite:id=CMD-IMPORT speqlite:version=3 speqlite:hash=abc123 -->
 ```
 
 The HTML comment at the end is a *roundtrip marker* used by the importer to detect previously-rendered specs.
@@ -294,14 +294,14 @@ The HTML comment at the end is a *roundtrip marker* used by the importer to dete
 
 ---
 
-## `speclite search`
+## `speqlite search`
 
 Full-text search over spec titles and bodies using FTS5/BM25.
 
 ### Synopsis
 
 ```
-speclite search <query> [flags]
+speqlite search <query> [flags]
 ```
 
 ### Flags
@@ -343,14 +343,14 @@ FR-005         [requirement] implemented "Plan/apply workflow requirement"
 
 ---
 
-## `speclite deps`
+## `speqlite deps`
 
 Display the dependency graph for a spec node.
 
 ### Synopsis
 
 ```
-speclite deps <spec-id> [flags]
+speqlite deps <spec-id> [flags]
 ```
 
 ### Flags
@@ -399,14 +399,14 @@ CMD-APPLY
 
 ---
 
-## `speclite validate`
+## `speqlite validate`
 
 Run structural and constraint validation against the current state.
 
 ### Synopsis
 
 ```
-speclite validate [flags]
+speqlite validate [flags]
 ```
 
 ### Flags
@@ -454,14 +454,14 @@ Exit code: 2
 
 ---
 
-## `speclite state`
+## `speqlite state`
 
 Subcommand group for inspecting canonical state.
 
-### `speclite state list`
+### `speqlite state list`
 
 ```
-speclite state list [flags]
+speqlite state list [flags]
 ```
 
 | Flag | Description |
@@ -481,10 +481,10 @@ FR-001         requirement   implemented   Import functional requirement
 STATE-SQLITE   state         verified      SQLite canonical state
 ```
 
-### `speclite state show`
+### `speqlite state show`
 
 ```
-speclite state show <spec-id> [flags]
+speqlite state show <spec-id> [flags]
 ```
 
 Prints full details of a single spec including body, relations, and constraints.
@@ -511,10 +511,10 @@ Relations:
 Constraints: (none)
 ```
 
-### `speclite state export`
+### `speqlite state export`
 
 ```
-speclite state export [flags]
+speqlite state export [flags]
 ```
 
 | Flag | Description |
@@ -524,10 +524,10 @@ speclite state export [flags]
 
 Exports the complete state as JSON. Equivalent to the content of `state.snapshot.json`.
 
-### `speclite state transition`
+### `speqlite state transition`
 
 ```
-speclite state transition <spec-id> --to <status> [flags]
+speqlite state transition <spec-id> --to <status> [flags]
 ```
 
 | Flag | Description |
@@ -538,14 +538,14 @@ Generates a plan entry for the status transition. Run `apply` to commit.
 
 ---
 
-## `speclite export`
+## `speqlite export`
 
 Export specs to formal verification languages.
 
 ### Synopsis
 
 ```
-speclite export [flags]
+speqlite export [flags]
 ```
 
 ### Flags
@@ -562,16 +562,16 @@ speclite export [flags]
 
 ---
 
-## `speclite version`
+## `speqlite version`
 
 Print version information.
 
 ```
-speclite version
+speqlite version
 ```
 
 Output:
 
 ```
-speclite v0.1.0 (commit: abc1234, built: 2024-01-15)
+speqlite v0.1.0 (commit: abc1234, built: 2024-01-15)
 ```

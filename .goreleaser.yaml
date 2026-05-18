@@ -1,15 +1,15 @@
 version: 2
 
-project_name: speclite
+project_name: speqlite
 
 before:
   hooks:
     - go mod tidy
 
 builds:
-  - id: speclite
-    main: ./cmd/speclite
-    binary: speclite
+  - id: speqlite
+    main: ./cmd/speqlite
+    binary: speqlite
     env:
       - CGO_ENABLED=0
     ldflags:
@@ -31,7 +31,7 @@ builds:
 archives:
   - id: default
     ids:
-      - speclite
+      - speqlite
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     format_overrides:
       - goos: windows

@@ -130,20 +130,20 @@ See [CLI Reference](cli-reference.md) for the `validate` command and [Error Cata
 
 ```bash
 # Transition a spec to review
-speclite state transition CMD-IMPORT --to review
+speqlite state transition CMD-IMPORT --to review
 
 # Approve a spec (review → fixed)
-speclite state transition CMD-IMPORT --to fixed
+speqlite state transition CMD-IMPORT --to fixed
 
 # Mark as implemented
-speclite state transition CMD-IMPORT --to implemented
+speqlite state transition CMD-IMPORT --to implemented
 
 # Deprecate
-speclite state transition CMD-IMPORT --to deprecated
+speqlite state transition CMD-IMPORT --to deprecated
 
 # Bulk status listing
-speclite state list --status draft
-speclite state list --status review
+speqlite state list --status draft
+speqlite state list --status review
 ```
 
 All transitions go through the plan/apply workflow: `state transition` generates a plan entry; `apply` commits it.

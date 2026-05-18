@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/workspace"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/workspace"
 	"github.com/spf13/cobra"
 )
 
@@ -16,7 +16,7 @@ func newDepsCmd() *cobra.Command {
 		Long: `Prints all outgoing depends_on relations for the given spec as a tree.
 
 Example:
-  speclite deps CMD-APPLY
+  speqlite deps CMD-APPLY
 
 Output:
   CMD-APPLY

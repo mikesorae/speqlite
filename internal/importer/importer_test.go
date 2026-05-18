@@ -3,7 +3,7 @@ package importer_test
 import (
 	"testing"
 
-	"github.com/speclite/speclite/internal/importer"
+	"github.com/mikesorae/speqlite/internal/importer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -7,16 +7,16 @@ Speclite follows a Terraform-inspired plan/apply workflow. No mutation of canoni
 ## Workflow Overview
 
 ```
-speclite import scratch.md
+speqlite import scratch.md
   │
   ▼ writes
 .spec/state.plan.json
   │
   ▼ reviewed by
-speclite plan
+speqlite plan
   │
   ▼ committed by
-speclite apply
+speqlite apply
   │
   ▼ updates
 .spec/state.sqlite
@@ -35,7 +35,7 @@ The plan file is a JSON document describing a set of ordered operations to be ap
 
 ```json
 {
-  "$schema": "https://speclite.dev/schemas/plan/v1.json",
+  "$schema": "https://speqlite.dev/schemas/plan/v1.json",
   "version": 1,
   "plan_hash": "<sha256 of canonical plan serialisation>",
   "generated_at": "<ISO-8601 UTC>",
@@ -198,7 +198,7 @@ Removes a relation edge.
 
 ```json
 {
-  "$schema": "https://speclite.dev/schemas/plan/v1.json",
+  "$schema": "https://speqlite.dev/schemas/plan/v1.json",
   "version": 1,
   "plan_hash": "sha256:deadbeef...",
   "generated_at": "2024-01-15T10:00:00Z",
@@ -248,7 +248,7 @@ The snapshot is a point-in-time export of the full state. It is updated by `appl
 
 ```json
 {
-  "$schema": "https://speclite.dev/schemas/snapshot/v1.json",
+  "$schema": "https://speqlite.dev/schemas/snapshot/v1.json",
   "version": 1,
   "snapshot_hash": "<sha256 of content>",
   "taken_at": "<ISO-8601 UTC>",
@@ -298,10 +298,10 @@ If they differ, a concurrent mutation has occurred since the plan was generated.
 Additionally, for each `update` and `transition` operation, the apply engine verifies `expected_version` matches the current `version` in `state.sqlite`. If any version has changed, the operation is a conflict.
 
 To resolve conflicts:
-1. Inspect the current state: `speclite state show <id>`
-2. Re-run `speclite import` to regenerate the plan against current state
-3. Review the new plan: `speclite plan`
-4. Apply: `speclite apply`
+1. Inspect the current state: `speqlite state show <id>`
+2. Re-run `speqlite import` to regenerate the plan against current state
+3. Review the new plan: `speqlite plan`
+4. Apply: `speqlite apply`
 
 ---
 
@@ -355,4 +355,4 @@ func Plan(snapshot []SpecNode, desired []SpecNode) []Op:
     return ops
 ```
 
-The planner never generates `transition` operations automatically — those are only produced by explicit `speclite state transition` calls.
+The planner never generates `transition` operations automatically — those are only produced by explicit `speqlite state transition` calls.

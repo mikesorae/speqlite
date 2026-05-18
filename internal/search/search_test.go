@@ -4,8 +4,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/search"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/search"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

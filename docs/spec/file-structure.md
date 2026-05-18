@@ -9,7 +9,7 @@ This page documents the directory layout of a Speclite workspace and the purpose
 ```
 {project-root}/
 │
-├── .spec/                   ← Speclite state directory (managed by speclite)
+├── .spec/                   ← Speclite state directory (managed by speqlite)
 │   ├── state.sqlite         ← Canonical state database
 │   ├── state.snapshot.json  ← Point-in-time snapshot of state (updated on apply)
 │   └── state.plan.json      ← Pending plan (written by import, consumed by apply)
@@ -32,15 +32,15 @@ This page documents the directory layout of a Speclite workspace and the purpose
 
 ## `.spec/` Directory
 
-The `.spec/` directory is managed exclusively by `speclite`. Do not edit files in this directory manually.
+The `.spec/` directory is managed exclusively by `speqlite`. Do not edit files in this directory manually.
 
 ### `.spec/state.sqlite`
 
 The canonical state database. Contains all spec nodes, relations, constraints, and event history.
 
-- Created by `speclite init`.
+- Created by `speqlite init`.
 - Read by all commands.
-- Written only by `speclite apply`.
+- Written only by `speqlite apply`.
 - Should be committed to Git for team sharing.
 - Uses SQLite WAL mode for safe concurrent reads.
 
@@ -53,7 +53,7 @@ The canonical state database. Contains all spec nodes, relations, constraints, a
 
 ### `.spec/state.snapshot.json`
 
-A JSON snapshot of the metadata of all specs (no body text). Updated atomically by `speclite apply`.
+A JSON snapshot of the metadata of all specs (no body text). Updated atomically by `speqlite apply`.
 
 Purpose:
 - Enables the planner to compute diffs without loading the full SQLite database.
@@ -80,7 +80,7 @@ Example:
 
 ### `.spec/state.plan.json`
 
-The pending plan, written by `speclite import` and consumed by `speclite apply`. Deleted after successful apply.
+The pending plan, written by `speqlite import` and consumed by `speqlite apply`. Deleted after successful apply.
 
 **Git recommendation**: Do **not** commit this file (add to `.gitignore`). Plans are ephemeral working state.
 
@@ -94,7 +94,7 @@ If you want to preserve plans for audit, use the `changes/` directory (see below
 
 ## `specs/` Directory
 
-Contains Markdown projections rendered by `speclite render`. These files are derived from state and can always be regenerated.
+Contains Markdown projections rendered by `speqlite render`. These files are derived from state and can always be regenerated.
 
 ### File Naming
 
@@ -124,7 +124,7 @@ The import command reads Markdown or plain-text files...
 - implements: [FR-001](FR-001.md)
 
 ---
-<!-- speclite:id=CMD-IMPORT speclite:version=3 speclite:hash=sha256:abc123 -->
+<!-- speqlite:id=CMD-IMPORT speqlite:version=3 speqlite:hash=sha256:abc123 -->
 ```
 
 The HTML comment at the end is the *roundtrip marker*. The normalizer uses it to match rendered files back to their canonical IDs without relying on filenames.
@@ -148,7 +148,7 @@ Convention:
 
 ## `changes/` Directory
 
-An optional directory for archiving applied plans. After `speclite apply` succeeds, users can move (or configure Speclite to copy) `state.plan.json` here with a timestamp prefix.
+An optional directory for archiving applied plans. After `speqlite apply` succeeds, users can move (or configure Speclite to copy) `state.plan.json` here with a timestamp prefix.
 
 ```
 changes/
@@ -180,12 +180,12 @@ This provides a full audit trail of every state mutation, even beyond what the e
 
 | Path | Managed by | Git |
 |---|---|---|
-| `.spec/state.sqlite` | `speclite apply` only | Commit |
-| `.spec/state.snapshot.json` | `speclite apply` only | Commit |
-| `.spec/state.plan.json` | `speclite import` / `apply` | Ignore |
+| `.spec/state.sqlite` | `speqlite apply` only | Commit |
+| `.spec/state.snapshot.json` | `speqlite apply` only | Commit |
+| `.spec/state.plan.json` | `speqlite import` / `apply` | Ignore |
 | `.spec/state.sqlite-wal` | SQLite | Ignore |
 | `.spec/state.sqlite-shm` | SQLite | Ignore |
-| `specs/*.md` | `speclite render` | Commit |
+| `specs/*.md` | `speqlite render` | Commit |
 | `scratch/*` | User | Optional |
 | `changes/*.json` | User / scripts | Optional |
 
@@ -193,7 +193,7 @@ This provides a full audit trail of every state mutation, even beyond what the e
 
 ## Multi-Repository Workspaces
 
-Speclite is designed for single-repository use in the MVP. If you have multiple repositories, run `speclite init` in each and use `speclite state export` to exchange snapshots.
+Speclite is designed for single-repository use in the MVP. If you have multiple repositories, run `speqlite init` in each and use `speqlite state export` to exchange snapshots.
 
 Cross-repository relation tracking (where `from_id` and `to_id` live in different workspaces) is a post-MVP feature.
 

@@ -30,7 +30,7 @@ type Workspace struct {
 }
 
 // ErrNotFound is returned when no .spec/ directory is found in the directory tree.
-var ErrNotFound = errors.New("workspace: .spec/ directory not found; run 'speclite init' to create one")
+var ErrNotFound = errors.New("workspace: .spec/ directory not found; run 'speqlite init' to create one")
 
 // Find walks up the directory tree from start, looking for a .spec/ directory.
 // It returns the first Workspace found, or ErrNotFound.

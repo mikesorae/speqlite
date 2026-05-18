@@ -1,4 +1,4 @@
-module github.com/speclite/speclite
+module github.com/mikesorae/speqlite
 
 go 1.25.0
 

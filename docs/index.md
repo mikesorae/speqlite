@@ -53,8 +53,8 @@ The data model is designed so that specifications can eventually be exported to 
 | Desired infrastructure | Markdown / plain-text spec files |
 | State file | `state.sqlite` |
 | Plan | `state.plan.json` |
-| Apply | State transition via `speclite apply` |
-| Output | `speclite render` |
+| Apply | State transition via `speqlite apply` |
+| Output | `speqlite render` |
 
 ---
 
@@ -62,28 +62,28 @@ The data model is designed so that specifications can eventually be exported to 
 
 ```bash
 # Initialise a new Speclite workspace
-speclite init
+speqlite init
 
 # Import rough Markdown into a pending plan
-speclite import scratch/my-feature.md
+speqlite import scratch/my-feature.md
 
 # Review the pending changes
-speclite plan
+speqlite plan
 
 # Commit the plan to state
-speclite apply
+speqlite apply
 
 # Regenerate Markdown projections from state
-speclite render --all
+speqlite render --all
 
 # Full-text search
-speclite search "plan apply"
+speqlite search "plan apply"
 
 # Inspect dependency graph
-speclite deps CMD-APPLY
+speqlite deps CMD-APPLY
 
 # Validate structural integrity
-speclite validate
+speqlite validate
 ```
 
 ---

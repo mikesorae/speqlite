@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/normalizer"
-	"github.com/speclite/speclite/internal/planner"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/normalizer"
+	"github.com/mikesorae/speqlite/internal/planner"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/workspace"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/workspace"
 	"github.com/spf13/cobra"
 )
 

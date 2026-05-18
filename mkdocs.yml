@@ -1,8 +1,8 @@
 site_name: Speclite
 site_description: AI-native local-first specification state management CLI
 site_author: Speclite Contributors
-repo_url: https://github.com/speclite/speclite
-repo_name: speclite/speclite
+repo_url: https://github.com/mikesorae/speqlite
+repo_name: speqlite/speqlite
 
 theme:
   name: material
@@ -67,4 +67,4 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/speclite/speclite
+      link: https://github.com/mikesorae/speqlite

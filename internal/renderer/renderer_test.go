@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/renderer"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/renderer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

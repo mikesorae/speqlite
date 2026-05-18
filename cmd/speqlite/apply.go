@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/speclite/speclite/internal/apply"
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/planner"
-	"github.com/speclite/speclite/internal/workspace"
+	"github.com/mikesorae/speqlite/internal/apply"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/planner"
+	"github.com/mikesorae/speqlite/internal/workspace"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +20,7 @@ func newApplyCmd() *cobra.Command {
 Each change is recorded in the event_log. A new snapshot is written to
 .spec/state.snapshot.json after all changes are applied.
 
-Run 'speclite plan' to review pending changes before applying.`,
+Run 'speqlite plan' to review pending changes before applying.`,
 		Args: cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cwd, err := os.Getwd()

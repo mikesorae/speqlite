@@ -9,7 +9,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/speclite/speclite/internal/importer"
+	"github.com/mikesorae/speqlite/internal/importer"
 )
 
 // NormalizedSpec is a fully normalised specification ready for plan/apply.

@@ -107,10 +107,10 @@ Pattern: `^({ID_PATTERN})[:\s]+(.+)$` or `^({ID_PATTERN})$`
 
 #### Heuristic H3: Roundtrip Marker
 
-If the document was previously rendered by `speclite render`, it contains a roundtrip marker:
+If the document was previously rendered by `speqlite render`, it contains a roundtrip marker:
 
 ```html
-<!-- speclite:id=CMD-IMPORT speclite:version=3 speclite:hash=abc123 -->
+<!-- speqlite:id=CMD-IMPORT speqlite:version=3 speqlite:hash=abc123 -->
 ```
 
 This is parsed as the authoritative ID and version.
@@ -164,7 +164,7 @@ The normalizer assigns a `kind` to each section using a rule-based classifier.
 | Rule | Pattern | Assigned Kind |
 |---|---|---|
 | Front matter `kind:` field | `kind: command` | Verbatim value |
-| Explicit roundtrip marker `speclite:kind` | `speclite:kind=command` | Verbatim value |
+| Explicit roundtrip marker `speqlite:kind` | `speqlite:kind=command` | Verbatim value |
 | `--kind` CLI flag | — | Verbatim value |
 | ID prefix `CMD-` | `CMD-*` | `command` |
 | ID prefix `FR-` | `FR-*` | `requirement` |

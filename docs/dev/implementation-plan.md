@@ -7,7 +7,7 @@ This document describes the Go package layout, dependency list, and build instru
 ## Module
 
 ```
-github.com/speclite/speclite
+github.com/mikesorae/speqlite
 ```
 
 Go version: **1.22** or later (for `range over int`, `slices`, `maps` stdlib packages).
@@ -17,10 +17,10 @@ Go version: **1.22** or later (for `range over int`, `slices`, `maps` stdlib pac
 ## Repository Layout
 
 ```
-github.com/speclite/speclite/
+github.com/mikesorae/speqlite/
 │
 ├── cmd/
-│   └── speclite/
+│   └── speqlite/
 │       └── main.go              ← Binary entry point
 │
 ├── internal/
@@ -90,7 +90,7 @@ github.com/speclite/speclite/
 
 ## Package Responsibilities
 
-### `cmd/speclite`
+### `cmd/speqlite`
 
 Entry point. Uses Cobra to define all subcommands. Each subcommand is a thin wrapper that:
 1. Resolves the workspace.
@@ -102,12 +102,12 @@ Entry point. Uses Cobra to define all subcommands. Each subcommand is a thin wra
 package main
 
 import (
-    "github.com/speclite/speclite/internal/workspace"
+    "github.com/mikesorae/speqlite/internal/workspace"
     "github.com/spf13/cobra"
 )
 
 func main() {
-    root := &cobra.Command{Use: "speclite"}
+    root := &cobra.Command{Use: "speqlite"}
     root.AddCommand(
         newInitCmd(),
         newImportCmd(),
@@ -345,12 +345,12 @@ If CGO is acceptable (e.g., in a native build environment), `github.com/mattn/go
 
 To enable CGO build:
 ```bash
-CGO_ENABLED=1 go build ./cmd/speclite
+CGO_ENABLED=1 go build ./cmd/speqlite
 ```
 
 To use pure-Go build (default):
 ```bash
-CGO_ENABLED=0 go build ./cmd/speclite
+CGO_ENABLED=0 go build ./cmd/speqlite
 ```
 
 The Makefile exposes both targets.
@@ -366,7 +366,7 @@ The Makefile exposes both targets.
 ## `go.mod`
 
 ```
-module github.com/speclite/speclite
+module github.com/mikesorae/speqlite
 
 go 1.22
 
@@ -397,20 +397,20 @@ require (
 
 ```bash
 # Clone
-git clone https://github.com/speclite/speclite.git
-cd speclite
+git clone https://github.com/mikesorae/speqlite.git
+cd speqlite
 
 # Install dependencies
 go mod download
 
 # Build binary (pure-Go SQLite)
-go build -o bin/speclite ./cmd/speclite
+go build -o bin/speqlite ./cmd/speqlite
 
 # Or with CGO SQLite (faster for large workspaces)
-CGO_ENABLED=1 go build -o bin/speclite-cgo ./cmd/speclite
+CGO_ENABLED=1 go build -o bin/speqlite-cgo ./cmd/speqlite
 
 # Install to $GOPATH/bin
-go install ./cmd/speclite
+go install ./cmd/speqlite
 ```
 
 ### Makefile Targets
@@ -419,10 +419,10 @@ go install ./cmd/speclite
 .PHONY: build test lint clean install
 
 build:
-	go build -o bin/speclite ./cmd/speclite
+	go build -o bin/speqlite ./cmd/speqlite
 
 build-cgo:
-	CGO_ENABLED=1 go build -o bin/speclite ./cmd/speclite
+	CGO_ENABLED=1 go build -o bin/speqlite ./cmd/speqlite
 
 test:
 	go test ./...
@@ -441,20 +441,20 @@ clean:
 	rm -rf bin/ coverage.out coverage.html
 
 install:
-	go install ./cmd/speclite
+	go install ./cmd/speqlite
 ```
 
 ### Cross-compilation
 
 ```bash
 # Linux AMD64
-GOOS=linux GOARCH=amd64 go build -o bin/speclite-linux-amd64 ./cmd/speclite
+GOOS=linux GOARCH=amd64 go build -o bin/speqlite-linux-amd64 ./cmd/speqlite
 
 # macOS ARM64
-GOOS=darwin GOARCH=arm64 go build -o bin/speclite-darwin-arm64 ./cmd/speclite
+GOOS=darwin GOARCH=arm64 go build -o bin/speqlite-darwin-arm64 ./cmd/speqlite
 
 # Windows AMD64
-GOOS=windows GOARCH=amd64 go build -o bin/speclite-windows-amd64.exe ./cmd/speclite
+GOOS=windows GOARCH=amd64 go build -o bin/speqlite-windows-amd64.exe ./cmd/speqlite
 ```
 
 ---
@@ -494,23 +494,23 @@ go test -count=1 ./...       # disable test caching
 
 1. `internal/workspace` — workspace discovery
 2. `internal/db` — schema, open/close, migrations, basic CRUD
-3. `cmd/speclite init` — uses `workspace` and `db`
+3. `cmd/speqlite init` — uses `workspace` and `db`
 4. `internal/importer` — Markdown and plain-text parsing
 5. `internal/normalizer` — ID/title/kind/relation extraction
 6. `internal/planner` — diff algorithm and plan file I/O
-7. `cmd/speclite import` — calls importer + normalizer + planner
-8. `cmd/speclite plan` — reads plan file, prints summary
+7. `cmd/speqlite import` — calls importer + normalizer + planner
+8. `cmd/speqlite plan` — reads plan file, prints summary
 9. `internal/apply` — transaction engine
-10. `cmd/speclite apply` — calls apply engine
+10. `cmd/speqlite apply` — calls apply engine
 11. `internal/renderer` — Markdown template
-12. `cmd/speclite render` — calls renderer
+12. `cmd/speqlite render` — calls renderer
 13. `internal/search` — FTS5 wrapper
-14. `cmd/speclite search` — calls search
+14. `cmd/speqlite search` — calls search
 15. `internal/validator` — all validation rules
-16. `cmd/speclite validate` — calls validator
-17. `cmd/speclite state` — list/show/export/transition subcommands
-18. `cmd/speclite deps` — graph traversal
-19. `cmd/speclite export` — formal export stubs
+16. `cmd/speqlite validate` — calls validator
+17. `cmd/speqlite state` — list/show/export/transition subcommands
+18. `cmd/speqlite deps` — graph traversal
+19. `cmd/speqlite export` — formal export stubs
 
 ---
 

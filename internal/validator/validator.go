@@ -10,7 +10,7 @@ package validator
 import (
 	"fmt"
 
-	"github.com/speclite/speclite/internal/db"
+	"github.com/mikesorae/speqlite/internal/db"
 )
 
 // Severity classifies a validation finding.

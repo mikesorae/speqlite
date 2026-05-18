@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/planner"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/planner"
 )
 
 // Result summarises the outcome of an apply operation.

@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/importer"
-	"github.com/speclite/speclite/internal/normalizer"
-	"github.com/speclite/speclite/internal/planner"
-	"github.com/speclite/speclite/internal/workspace"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/importer"
+	"github.com/mikesorae/speqlite/internal/normalizer"
+	"github.com/mikesorae/speqlite/internal/planner"
+	"github.com/mikesorae/speqlite/internal/workspace"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +20,7 @@ func newImportCmd() *cobra.Command {
 and diffs the result against the current SQLite state.
 
 The plan is written to .spec/state.plan.json but state is NOT mutated.
-Run 'speclite apply' to apply the plan.`,
+Run 'speqlite apply' to apply the plan.`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			filePath := args[0]
@@ -104,5 +104,5 @@ func printPlanSummary(plan *planner.Plan) {
 		}
 	}
 	fmt.Printf("\n%d to create, %d to update, %d to delete.\n", creates, updates, deletes)
-	fmt.Println("Run 'speclite apply' to apply this plan.")
+	fmt.Println("Run 'speqlite apply' to apply this plan.")
 }

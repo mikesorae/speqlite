@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/search"
-	"github.com/speclite/speclite/internal/workspace"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/search"
+	"github.com/mikesorae/speqlite/internal/workspace"
 	"github.com/spf13/cobra"
 )
 
@@ -24,9 +24,9 @@ func newSearchCmd() *cobra.Command {
 Results are printed best-match-first (lowest BM25 score = most relevant).
 
 Examples:
-  speclite search "plan apply"
-  speclite search "import" --type command
-  speclite search "requirement" --status fixed`,
+  speqlite search "plan apply"
+  speqlite search "import" --type command
+  speqlite search "requirement" --status fixed`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			query := args[0]

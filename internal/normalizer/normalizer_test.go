@@ -3,8 +3,8 @@ package normalizer_test
 import (
 	"testing"
 
-	"github.com/speclite/speclite/internal/importer"
-	"github.com/speclite/speclite/internal/normalizer"
+	"github.com/mikesorae/speqlite/internal/importer"
+	"github.com/mikesorae/speqlite/internal/normalizer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

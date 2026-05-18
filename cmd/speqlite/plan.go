@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/planner"
-	"github.com/speclite/speclite/internal/workspace"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/planner"
+	"github.com/mikesorae/speqlite/internal/workspace"
 	"github.com/spf13/cobra"
 )
 
@@ -17,7 +17,7 @@ func newPlanCmd() *cobra.Command {
 		Short: "Re-run the planner against the current snapshot and pretty-print the diff",
 		Long: `Loads the pending plan from .spec/state.plan.json and pretty-prints it.
 
-If no plan exists yet, run 'speclite import <file>' first.`,
+If no plan exists yet, run 'speqlite import <file>' first.`,
 		Args: cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cwd, err := os.Getwd()
@@ -33,7 +33,7 @@ If no plan exists yet, run 'speclite import <file>' first.`,
 			plan, err := planner.Load(ws.PlanPath)
 			if err != nil {
 				if errors.Is(err, os.ErrNotExist) {
-					fmt.Println("No pending plan. Run 'speclite import <file>' to create one.")
+					fmt.Println("No pending plan. Run 'speqlite import <file>' to create one.")
 					return nil
 				}
 				return fmt.Errorf("plan: load plan: %w", err)
@@ -103,5 +103,5 @@ func printPlanDiff(plan *planner.Plan) {
 	}
 
 	fmt.Printf("\n%d to create, %d to update, %d to delete.\n", creates, updates, deletes)
-	fmt.Println("Run 'speclite apply' to apply this plan.")
+	fmt.Println("Run 'speqlite apply' to apply this plan.")
 }

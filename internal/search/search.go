@@ -4,7 +4,7 @@ package search
 import (
 	"fmt"
 
-	"github.com/speclite/speclite/internal/db"
+	"github.com/mikesorae/speqlite/internal/db"
 )
 
 // Result is a single search hit with its BM25 rank.

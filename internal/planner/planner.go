@@ -8,8 +8,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/speclite/speclite/internal/db"
-	"github.com/speclite/speclite/internal/normalizer"
+	"github.com/mikesorae/speqlite/internal/db"
+	"github.com/mikesorae/speqlite/internal/normalizer"
 )
 
 // Action describes the type of change a plan entry represents.
@@ -59,7 +59,7 @@ type Plan struct {
 //
 // Note: Speclite import never auto-deletes — deletion entries are only
 // produced when the caller explicitly passes current specs that have no
-// counterpart in the desired list (used by `speclite plan` re-run).
+// counterpart in the desired list (used by `speqlite plan` re-run).
 func Diff(desired []normalizer.NormalizedSpec, current []db.Spec) *Plan {
 	// Index current state by ID.
 	currentByID := make(map[string]db.Spec, len(current))
