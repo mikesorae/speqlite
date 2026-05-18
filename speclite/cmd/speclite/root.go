@@ -44,6 +44,7 @@ func main() {
 		newDepsCmd(),
 		newValidateCmd(),
 		newStateCmd(),
+		newVersionCmd(),
 	)
 
 	if err := rootCmd.Execute(); err != nil {
