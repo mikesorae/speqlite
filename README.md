@@ -1,7 +1,7 @@
 # Speclite
 
 [![Go Version](https://img.shields.io/badge/go-1.21%2B-blue?logo=go)](https://go.dev)
-[![Build](https://img.shields.io/github/actions/workflow/status/speqlite/speqlite/ci.yml?branch=main&label=build)](https://github.com/mikesorae/speqlite/actions)
+[![Build](https://img.shields.io/github/actions/workflow/status/mikesorae/speqlite/ci.yml?branch=main&label=build)](https://github.com/mikesorae/speqlite/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mikesorae/speqlite)](https://goreportcard.com/report/github.com/mikesorae/speqlite)
 
 A local-first specification state management CLI, inspired by Terraform's plan/apply workflow.
