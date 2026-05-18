@@ -1,6 +1,0 @@
-bin/
-*.sqlite
-*.sqlite-wal
-*.sqlite-shm
-coverage.out
-coverage.html

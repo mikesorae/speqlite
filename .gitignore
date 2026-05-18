@@ -4,3 +4,12 @@ ROADMAP.md
 TODO.md
 NOTES.md
 .archon-notes/
+.claude/
+
+# Project
+bin/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+coverage.out
+coverage.html
