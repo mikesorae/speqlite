@@ -1,5 +1,9 @@
 # Speclite
 
+[![Go Version](https://img.shields.io/badge/go-1.21%2B-blue?logo=go)](https://go.dev)
+[![Build](https://img.shields.io/github/actions/workflow/status/speclite/speclite/ci.yml?branch=main&label=build)](https://github.com/speclite/speclite/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/speclite/speclite)](https://goreportcard.com/report/github.com/speclite/speclite)
+
 A local-first specification state management CLI, inspired by Terraform's plan/apply workflow.
 
 Canonical state lives in SQLite. Markdown is a regeneratable projection for human editing.
@@ -19,10 +23,16 @@ Markdown / Plain Text
 ## Quick Start
 
 ```bash
-# 1. Initialise a workspace
+go install github.com/speclite/speclite/cmd/speclite@latest
+```
+
+### 5-step workflow
+
+```bash
+# Step 1 — Initialise a workspace
 speclite init
 
-# 2. Write a rough spec in Markdown
+# Step 2 — Write a rough spec in Markdown (any structure is fine)
 cat > scratch/my-feature.md << 'EOF'
 # CMD-IMPORT
 
@@ -35,29 +45,50 @@ Apply command mutates SQLite state from the current plan.
 depends_on CMD-IMPORT
 EOF
 
-# 3. Parse the file and generate a plan (no state mutation)
+# Step 3 — Import the file and generate a plan (no state mutation yet)
 speclite import scratch/my-feature.md
 
-# 4. Review the plan
+# Step 4 — Review the pending plan
 speclite plan
 
-# 5. Apply pending changes to SQLite
+# Step 5 — Apply pending changes to SQLite, then render Markdown
 speclite apply
-
-# 6. Regenerate Markdown from canonical state
 speclite render --all
+```
 
-# 7. Search specs by full-text query
-speclite search "import apply"
+## Architecture
 
-# 8. Inspect the dependency graph
-speclite deps CMD-APPLY
-
-# 9. Validate structural integrity
-speclite validate
-
-# 10. List all specs in state
-speclite state list
+```
+┌─────────────────────────────────────────────────────┐
+│                   Input Sources                      │
+│           Markdown / Plain Text / AI output          │
+└─────────────────────────┬───────────────────────────┘
+                          │  speclite import
+                          ▼
+                    ┌───────────┐
+                    │  Importer │  parse headings, IDs, relations
+                    └─────┬─────┘
+                          │
+                          ▼
+                    ┌────────────┐
+                    │ Normalizer │  assign IDs, infer kinds, hash
+                    └─────┬──────┘
+                          │
+                          ▼
+              ┌──────────────────────┐
+              │  state.plan.json     │  desired-state diff
+              └──────────┬───────────┘
+                         │  speclite apply
+                         ▼
+              ┌──────────────────────┐
+              │  SQLite State        │  canonical source of truth
+              │  (.spec/state.sqlite)│
+              └──────────┬───────────┘
+          ┌──────────────┼──────────────┐
+          │              │              │
+          ▼              ▼              ▼
+      Renderer       Searcher      Validator
+   specs/*.md     FTS5 + BM25    cycle detect
 ```
 
 ## Installation
@@ -65,7 +96,7 @@ speclite state list
 ### From source
 
 ```bash
-git clone <repo>
+git clone https://github.com/speclite/speclite
 cd speclite
 make install      # installs to $GOPATH/bin/speclite
 ```
@@ -163,3 +194,21 @@ make clean          # remove build artifacts
 - **Immutable event log** — every state change is recorded in `event_log`
 - **AI-readable** — spec state is structured for programmatic consumption
 - **Future-proof** — constraints table is designed for eventual formal verification export
+
+## Contributing
+
+Contributions are welcome. Please open an issue first to discuss significant changes.
+
+- Fork the repo and create a feature branch (`feature/my-change`)
+- Write tests alongside implementation (TDD preferred)
+- Run `make test` and `make lint` before submitting a pull request
+- Follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages
+
+## Roadmap
+
+| Milestone | Description |
+|---|---|
+| **MCP Server** | Expose `spec_get`, `spec_search`, `spec_deps`, `spec_validate` as MCP tools so AI agents can query spec state directly |
+| **Formal Export** | `speclite export --format alloy\|smtlib\|tla` — export constraints and relations to formal verification languages (Alloy, SMT-LIB, TLA+) |
+| **Watch Mode** | `speclite watch` — automatically re-import and re-plan on file change |
+| **Diff Viewer** | Richer `plan` output with side-by-side before/after rendering |
