@@ -1,0 +1,6 @@
+# Archon: exclude agent planning files
+BACKLOG.md
+ROADMAP.md
+TODO.md
+NOTES.md
+.archon-notes/
