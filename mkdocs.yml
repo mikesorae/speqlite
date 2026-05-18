@@ -61,9 +61,6 @@ nav:
     - Plan & Apply: spec/plan-apply.md
     - File Structure: spec/file-structure.md
     - Future Extensions: spec/future-extensions.md
-  - Development:
-    - Implementation Plan: dev/implementation-plan.md
-
 extra:
   social:
     - icon: fontawesome/brands/github
