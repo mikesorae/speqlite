@@ -1,0 +1,70 @@
+site_name: Speclite
+site_description: AI-native local-first specification state management CLI
+site_author: Speclite Contributors
+repo_url: https://github.com/speclite/speclite
+repo_name: speclite/speclite
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Specification:
+    - Data Model: spec/data-model.md
+    - State Machine: spec/state-machine.md
+    - CLI Reference: spec/cli-reference.md
+    - Normalizer Algorithm: spec/normalizer.md
+    - Plan & Apply: spec/plan-apply.md
+    - File Structure: spec/file-structure.md
+    - Future Extensions: spec/future-extensions.md
+  - Development:
+    - Implementation Plan: dev/implementation-plan.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/speclite/speclite
