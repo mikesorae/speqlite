@@ -1,0 +1,3116 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI-native local-first specification state management CLI">
+      
+      
+        <meta name="author" content="Speclite Contributors">
+      
+      
+      
+        <link rel="prev" href="../state-machine/">
+      
+      
+        <link rel="next" href="../normalizer/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>CLI Reference - Speclite</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cli-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Speclite" class="md-header__button md-logo" aria-label="Speclite" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Speclite
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CLI Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mikesorae/speqlite" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    speqlite/speqlite
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../data-model/" class="md-tabs__link">
+          
+  
+  
+  Specification
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Speclite" class="md-nav__button md-logo" aria-label="Speclite" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Speclite
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mikesorae/speqlite" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    speqlite/speqlite
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Specification
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Specification
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../state-machine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Machine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#global-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Flags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite init
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite init">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite import
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite import">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behaviour_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-json_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite apply
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite apply">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behaviour_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite render
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite render">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-json_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-deps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite deps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite deps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-json_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-validate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite validate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite validate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checks-performed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checks Performed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#speqlite-state-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speqlite-state-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speqlite-state-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speqlite-state-transition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state transition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite export
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite version
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../normalizer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normalizer Algorithm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-apply/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan & Apply
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../future-extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Future Extensions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#global-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Flags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite init
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite init">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite import
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite import">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behaviour_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-json_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite apply
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite apply">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behaviour_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite render
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite render">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-json_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-deps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite deps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite deps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-json_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-validate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite validate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite validate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checks-performed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checks Performed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-text_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (text)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#speqlite-state-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speqlite-state-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speqlite-state-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speqlite-state-transition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite state transition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite export
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="speqlite export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synopsis_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synopsis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speqlite-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        speqlite version
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="cli-reference">CLI Reference<a class="headerlink" href="#cli-reference" title="Permanent link">&para;</a></h1>
+<p>Complete reference for all <code>speqlite</code> commands, flags, exit codes, and output formats.</p>
+<hr />
+<h2 id="global-flags">Global Flags<a class="headerlink" href="#global-flags" title="Permanent link">&para;</a></h2>
+<p>These flags are available on every command.</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--workspace</code></td>
+<td>string</td>
+<td><code>.</code></td>
+<td>Path to the workspace root (must contain <code>.spec/</code>)</td>
+</tr>
+<tr>
+<td><code>--format</code></td>
+<td>string</td>
+<td><code>text</code></td>
+<td>Output format: <code>text</code>, <code>json</code>, <code>json-pretty</code></td>
+</tr>
+<tr>
+<td><code>--quiet</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Suppress informational output; only errors go to stderr</td>
+</tr>
+<tr>
+<td><code>--no-color</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Disable ANSI colour codes</td>
+</tr>
+<tr>
+<td><code>--verbose</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Increase log verbosity</td>
+</tr>
+<tr>
+<td><code>--version</code></td>
+<td>—</td>
+<td>—</td>
+<td>Print version and exit</td>
+</tr>
+<tr>
+<td><code>--help</code>, <code>-h</code></td>
+<td>—</td>
+<td>—</td>
+<td>Print command help and exit</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exit-codes">Exit Codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>General error (I/O, parsing, unexpected)</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Validation error (structural or constraint violation)</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>No pending plan (used by <code>apply</code> when there is nothing to apply)</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>Conflict detected (apply would overwrite a concurrent change)</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Workspace not initialised (<code>.spec/</code> directory missing)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="speqlite-init"><code>speqlite init</code><a class="headerlink" href="#speqlite-init" title="Permanent link">&para;</a></h2>
+<p>Initialise a new Speclite workspace in the current directory.</p>
+<h3 id="synopsis">Synopsis<a class="headerlink" href="#synopsis" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>speqlite init [flags]
+</code></pre></div>
+<h3 id="flags">Flags<a class="headerlink" href="#flags" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--force</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Re-initialise an existing workspace (non-destructive)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="behaviour">Behaviour<a class="headerlink" href="#behaviour" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Creates <code>.spec/</code> directory.</li>
+<li>Creates <code>.spec/state.sqlite</code> with the full DDL schema.</li>
+<li>Writes <code>PRAGMA user_version = 1</code> to <code>state.sqlite</code>.</li>
+<li>Creates empty <code>specs/</code>, <code>scratch/</code>, and <code>changes/</code> directories.</li>
+<li>Writes a <code>change_status</code>-equivalent <code>init_workspace</code> event to <code>event_log</code>.</li>
+<li>Prints confirmation to stdout.</li>
+</ol>
+<h3 id="output-text">Output (text)<a class="headerlink" href="#output-text" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Initialised Speclite workspace at /path/to/project
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  .spec/state.sqlite   created
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  specs/               created
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  scratch/             created
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  changes/             created
+</code></pre></div>
+<h3 id="exit-codes_1">Exit Codes<a class="headerlink" href="#exit-codes_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Directory not writable</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Already initialised and <code>--force</code> not set</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="speqlite-import"><code>speqlite import</code><a class="headerlink" href="#speqlite-import" title="Permanent link">&para;</a></h2>
+<p>Parse one or more input files and compute a pending plan. Does <strong>not</strong> mutate state.</p>
+<h3 id="synopsis_1">Synopsis<a class="headerlink" href="#synopsis_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>speqlite import &lt;file&gt; [&lt;file&gt;...] [flags]
+</code></pre></div>
+<h3 id="flags_1">Flags<a class="headerlink" href="#flags_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--dry-run</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Compute plan but do not write <code>state.plan.json</code></td>
+</tr>
+<tr>
+<td><code>--id-prefix</code></td>
+<td>string</td>
+<td><code>""</code></td>
+<td>Override the ID prefix used when generating new IDs</td>
+</tr>
+<tr>
+<td><code>--kind</code></td>
+<td>string</td>
+<td><code>""</code></td>
+<td>Force all parsed nodes to this kind (overrides inference)</td>
+</tr>
+<tr>
+<td><code>--status</code></td>
+<td>string</td>
+<td><code>draft</code></td>
+<td>Initial status for newly created specs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="behaviour_1">Behaviour<a class="headerlink" href="#behaviour_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Reads each file and dispatches to the appropriate parser (Markdown or plain text).</li>
+<li>Runs the normalizer to produce a list of candidate <code>SpecNode</code> values.</li>
+<li>Compares candidate nodes against the current state snapshot.</li>
+<li>Produces a plan (list of <code>create</code>, <code>update</code>, <code>delete</code> operations).</li>
+<li>Writes the plan to <code>.spec/state.plan.json</code> (unless <code>--dry-run</code>).</li>
+<li>Prints a summary of the plan.</li>
+</ol>
+<h3 id="output-text_1">Output (text)<a class="headerlink" href="#output-text_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Parsed scratch/my-feature.md → 3 spec nodes
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Plan:
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  + create CMD-IMPORT        [command]  &quot;Import command&quot;
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  + create CMD-APPLY         [command]  &quot;Apply command&quot;
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  ~ update FR-001            [requirement]  &quot;Functional Requirement 1&quot;
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>3 changes pending. Run `speqlite apply` to commit.
+</code></pre></div>
+<h3 id="output-json">Output (json)<a class="headerlink" href="#output-json" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;source_files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;scratch/my-feature.md&quot;</span><span class="p">],</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;plan_hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sha256:abc123...&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">&quot;ops&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;op&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;create&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-IMPORT&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;command&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Import command&quot;</span><span class="p">},</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;op&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;create&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-APPLY&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;command&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Apply command&quot;</span><span class="p">},</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;op&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;update&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FR-001&quot;</span><span class="p">,</span><span class="w">     </span><span class="nt">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;body&quot;</span><span class="p">]}</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="exit-codes_2">Exit Codes<a class="headerlink" href="#exit-codes_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Plan generated successfully</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>File not found or unreadable</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Validation error in parsed content</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Workspace not initialised</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="speqlite-plan"><code>speqlite plan</code><a class="headerlink" href="#speqlite-plan" title="Permanent link">&para;</a></h2>
+<p>Display the current pending plan from <code>.spec/state.plan.json</code>.</p>
+<h3 id="synopsis_2">Synopsis<a class="headerlink" href="#synopsis_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>speqlite plan [flags]
+</code></pre></div>
+<h3 id="flags_2">Flags<a class="headerlink" href="#flags_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--summary</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Print only the count per operation type</td>
+</tr>
+</tbody>
+</table>
+<h3 id="output-text_2">Output (text)<a class="headerlink" href="#output-text_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Pending plan (3 operations):
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  + CMD-IMPORT   [command]     create   &quot;Import command&quot;
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  ~ CMD-RENDER   [command]     update   title changed
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  - CMD-OLD      [command]     delete   deprecated
+</code></pre></div>
+<p>Legend: <code>+</code> = create, <code>~</code> = update, <code>-</code> = delete/deprecate.</p>
+<h3 id="output-json_1">Output (json)<a class="headerlink" href="#output-json_1" title="Permanent link">&para;</a></h3>
+<p>Same structure as the <code>state.plan.json</code> file. See <a href="../plan-apply/">Plan &amp; Apply</a>.</p>
+<h3 id="exit-codes_3">Exit Codes<a class="headerlink" href="#exit-codes_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Plan shown</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>No pending plan (<code>state.plan.json</code> absent or empty)</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Workspace not initialised</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="speqlite-apply"><code>speqlite apply</code><a class="headerlink" href="#speqlite-apply" title="Permanent link">&para;</a></h2>
+<p>Apply the pending plan to <code>.spec/state.sqlite</code>. This is the only command that mutates canonical state.</p>
+<h3 id="synopsis_3">Synopsis<a class="headerlink" href="#synopsis_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>speqlite apply [flags]
+</code></pre></div>
+<h3 id="flags_3">Flags<a class="headerlink" href="#flags_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--auto-approve</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Skip interactive confirmation prompt</td>
+</tr>
+<tr>
+<td><code>--dry-run</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Show what would be applied; do not mutate state</td>
+</tr>
+</tbody>
+</table>
+<h3 id="behaviour_2">Behaviour<a class="headerlink" href="#behaviour_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Reads <code>.spec/state.plan.json</code>.</li>
+<li>Validates the plan (schema check, conflict detection, transition validity).</li>
+<li>(If interactive) Prompts for confirmation.</li>
+<li>Executes all operations in a single SQLite transaction.</li>
+<li>Appends events to <code>event_log</code> for every operation.</li>
+<li>Updates <code>state.snapshot.json</code> to reflect new state.</li>
+<li>Removes <code>state.plan.json</code>.</li>
+</ol>
+<h3 id="output-text_3">Output (text)<a class="headerlink" href="#output-text_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Applying 3 operations...
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  ✓ create CMD-IMPORT
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  ✓ create CMD-APPLY
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>  ✓ update CMD-RENDER
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Applied successfully. State updated.
+</code></pre></div>
+<h3 id="exit-codes_4">Exit Codes<a class="headerlink" href="#exit-codes_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>All operations applied</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Validation error; apply aborted</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>No pending plan</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>Conflict: version mismatch detected</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Workspace not initialised</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="speqlite-render"><code>speqlite render</code><a class="headerlink" href="#speqlite-render" title="Permanent link">&para;</a></h2>
+<p>Generate Markdown projections from state.</p>
+<h3 id="synopsis_4">Synopsis<a class="headerlink" href="#synopsis_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>speqlite render [&lt;spec-id&gt;...] [flags]
+</code></pre></div>
+<h3 id="flags_4">Flags<a class="headerlink" href="#flags_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--all</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Render all specs</td>
+</tr>
+<tr>
+<td><code>--output</code></td>
+<td>string</td>
+<td><code>specs/</code></td>
+<td>Output directory for rendered files</td>
+</tr>
+<tr>
+<td><code>--format</code></td>
+<td>string</td>
+<td><code>markdown</code></td>
+<td>Output format: <code>markdown</code>, <code>text</code>, <code>json</code></td>
+</tr>
+<tr>
+<td><code>--status</code></td>
+<td>string</td>
+<td><code>""</code></td>
+<td>Only render specs with this status</td>
+</tr>
+<tr>
+<td><code>--kind</code></td>
+<td>string</td>
+<td><code>""</code></td>
+<td>Only render specs of this kind</td>
+</tr>
+</tbody>
+</table>
+<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<p>For each rendered spec, a file is created at <code>{output}/{id}.md</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="gh"># CMD-IMPORT</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="gs">**Kind**</span>: command
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="gs">**Status**</span>: fixed
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="gs">**Version**</span>: 3
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="gs">**Updated**</span>: 2024-01-15T10:30:00Z
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="gu">## Description</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>The import command reads Markdown or plain-text files...
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="gu">## Relations</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="k">-</span><span class="w"> </span>depends_on: [<span class="nt">STATE-SQLITE</span>](<span class="na">STATE-SQLITE.md</span>)
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="k">-</span><span class="w"> </span>implements: [<span class="nt">FR-001</span>](<span class="na">FR-001.md</span>)
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>---
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>&lt;!-- speqlite:id=CMD-IMPORT speqlite:version=3 speqlite:hash=abc123 --&gt;
+</code></pre></div>
+<p>The HTML comment at the end is a <em>roundtrip marker</em> used by the importer to detect previously-rendered specs.</p>
+<h3 id="exit-codes_5">Exit Codes<a class="headerlink" href="#exit-codes_5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>All requested specs rendered</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Output directory not writable</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Workspace not initialised</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="speqlite-search"><code>speqlite search</code><a class="headerlink" href="#speqlite-search" title="Permanent link">&para;</a></h2>
+<p>Full-text search over spec titles and bodies using FTS5/BM25.</p>
+<h3 id="synopsis_5">Synopsis<a class="headerlink" href="#synopsis_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>speqlite search &lt;query&gt; [flags]
+</code></pre></div>
+<h3 id="flags_5">Flags<a class="headerlink" href="#flags_5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--limit</code></td>
+<td>int</td>
+<td><code>20</code></td>
+<td>Maximum number of results</td>
+</tr>
+<tr>
+<td><code>--kind</code></td>
+<td>string</td>
+<td><code>""</code></td>
+<td>Filter by spec kind</td>
+</tr>
+<tr>
+<td><code>--status</code></td>
+<td>string</td>
+<td><code>""</code></td>
+<td>Filter by spec status</td>
+</tr>
+<tr>
+<td><code>--show-body</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Include body excerpt in output</td>
+</tr>
+</tbody>
+</table>
+<h3 id="output-text_4">Output (text)<a class="headerlink" href="#output-text_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>CMD-APPLY      [command]     fixed       &quot;Apply command&quot;
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>CMD-PLAN       [command]     fixed       &quot;Plan command&quot;
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>FR-005         [requirement] implemented &quot;Plan/apply workflow requirement&quot;
+</code></pre></div>
+<h3 id="output-json_2">Output (json)<a class="headerlink" href="#output-json_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;plan apply&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-APPLY&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Apply command&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;command&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fixed&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-1.23</span><span class="p">},</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-PLAN&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Plan command&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;command&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fixed&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-1.05</span><span class="p">}</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="exit-codes_6">Exit Codes<a class="headerlink" href="#exit-codes_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Search completed (zero results is still exit 0)</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>FTS table not available</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Workspace not initialised</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="speqlite-deps"><code>speqlite deps</code><a class="headerlink" href="#speqlite-deps" title="Permanent link">&para;</a></h2>
+<p>Display the dependency graph for a spec node.</p>
+<h3 id="synopsis_6">Synopsis<a class="headerlink" href="#synopsis_6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>speqlite deps &lt;spec-id&gt; [flags]
+</code></pre></div>
+<h3 id="flags_6">Flags<a class="headerlink" href="#flags_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--depth</code></td>
+<td>int</td>
+<td><code>0</code></td>
+<td>Max traversal depth (0 = unlimited)</td>
+</tr>
+<tr>
+<td><code>--direction</code></td>
+<td>string</td>
+<td><code>out</code></td>
+<td>Edge direction: <code>out</code> (what it depends on), <code>in</code> (what depends on it), <code>both</code></td>
+</tr>
+<tr>
+<td><code>--relation</code></td>
+<td>string</td>
+<td><code>""</code></td>
+<td>Filter by relation type</td>
+</tr>
+</tbody>
+</table>
+<h3 id="output-text_5">Output (text)<a class="headerlink" href="#output-text_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>CMD-APPLY
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a> ├── depends_on → CMD-PLAN
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a> │    └── depends_on → STATE-SQLITE
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a> └── depends_on → STATE-SQLITE
+</code></pre></div>
+<h3 id="output-json_3">Output (json)<a class="headerlink" href="#output-json_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="p">{</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="nt">&quot;root&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-APPLY&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="nt">&quot;nodes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-APPLY&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Apply command&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;depth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-PLAN&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Plan command&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;depth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;STATE-SQLITE&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SQLite state&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;depth&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="nt">&quot;edges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-APPLY&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;depends_on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-PLAN&quot;</span><span class="p">},</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-APPLY&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;depends_on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;STATE-SQLITE&quot;</span><span class="p">},</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">    </span><span class="p">{</span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMD-PLAN&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;relation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;depends_on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;STATE-SQLITE&quot;</span><span class="p">}</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="exit-codes_7">Exit Codes<a class="headerlink" href="#exit-codes_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Graph displayed</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Spec ID not found</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Cyclic dependency detected</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Workspace not initialised</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="speqlite-validate"><code>speqlite validate</code><a class="headerlink" href="#speqlite-validate" title="Permanent link">&para;</a></h2>
+<p>Run structural and constraint validation against the current state.</p>
+<h3 id="synopsis_7">Synopsis<a class="headerlink" href="#synopsis_7" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>speqlite validate [flags]
+</code></pre></div>
+<h3 id="flags_7">Flags<a class="headerlink" href="#flags_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--fix</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Auto-fix trivial issues (e.g. normalise IDs)</td>
+</tr>
+<tr>
+<td><code>--strict</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Treat warnings as errors</td>
+</tr>
+</tbody>
+</table>
+<h3 id="checks-performed">Checks Performed<a class="headerlink" href="#checks-performed" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Error Code</th>
+<th>Severity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duplicate IDs</td>
+<td><code>E_DUPLICATE_ID</code></td>
+<td>Error</td>
+</tr>
+<tr>
+<td>Broken relation (target missing)</td>
+<td><code>E_BROKEN_RELATION</code></td>
+<td>Error</td>
+</tr>
+<tr>
+<td>Invalid status transition in plan</td>
+<td><code>E_INVALID_TRANSITION</code></td>
+<td>Error</td>
+</tr>
+<tr>
+<td>Cyclic dependency</td>
+<td><code>E_CYCLIC_DEP</code></td>
+<td>Error</td>
+</tr>
+<tr>
+<td><code>draft</code> target in stable dependency</td>
+<td><code>E_DRAFT_DEPENDENCY</code></td>
+<td>Warning</td>
+</tr>
+<tr>
+<td><code>deprecated</code> target in live dependency</td>
+<td><code>E_DEPRECATED_DEPENDENCY</code></td>
+<td>Warning</td>
+</tr>
+<tr>
+<td>Spec with no title</td>
+<td><code>E_MISSING_TITLE</code></td>
+<td>Warning</td>
+</tr>
+<tr>
+<td>Spec with no body</td>
+<td><code>E_EMPTY_BODY</code></td>
+<td>Warning (if <code>--strict</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="output-text_6">Output (text)<a class="headerlink" href="#output-text_6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Validation complete.
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>Errors (2):
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>  E_BROKEN_RELATION  CMD-APPLY depends_on MISSING-NODE (not found)
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>  E_CYCLIC_DEP       CMD-A → CMD-B → CMD-A
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>Warnings (1):
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>  E_DRAFT_DEPENDENCY  CMD-RENDER depends_on FR-002 (draft)
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>Exit code: 2
+</code></pre></div>
+<h3 id="exit-codes_8">Exit Codes<a class="headerlink" href="#exit-codes_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>No errors (warnings may exist)</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>One or more errors found</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td>Workspace not initialised</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="speqlite-state"><code>speqlite state</code><a class="headerlink" href="#speqlite-state" title="Permanent link">&para;</a></h2>
+<p>Subcommand group for inspecting canonical state.</p>
+<h3 id="speqlite-state-list"><code>speqlite state list</code><a class="headerlink" href="#speqlite-state-list" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>speqlite state list [flags]
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--status &lt;s&gt;</code></td>
+<td>Filter by status</td>
+</tr>
+<tr>
+<td><code>--kind &lt;k&gt;</code></td>
+<td>Filter by kind</td>
+</tr>
+<tr>
+<td><code>--sort &lt;field&gt;</code></td>
+<td>Sort by: <code>id</code>, <code>title</code>, <code>updated_at</code>, <code>status</code> (default: <code>id</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ID             KIND          STATUS        TITLE
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>CMD-APPLY      command       fixed         Apply command
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>CMD-IMPORT     command       fixed         Import command
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>CMD-PLAN       command       fixed         Plan command
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>FR-001         requirement   implemented   Import functional requirement
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>STATE-SQLITE   state         verified      SQLite canonical state
+</code></pre></div>
+<h3 id="speqlite-state-show"><code>speqlite state show</code><a class="headerlink" href="#speqlite-state-show" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>speqlite state show &lt;spec-id&gt; [flags]
+</code></pre></div>
+<p>Prints full details of a single spec including body, relations, and constraints.</p>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ID:         CMD-APPLY
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Title:      Apply command
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>Kind:       command
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>Status:     fixed
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>Version:    3
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>Hash:       sha256:abc123...
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>Created:    2024-01-10T09:00:00Z
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>Updated:    2024-01-15T10:30:00Z
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>Body:
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>  The apply command commits the pending plan to state.sqlite...
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>Relations:
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>  depends_on → CMD-PLAN
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>  depends_on → STATE-SQLITE
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>Constraints: (none)
+</code></pre></div>
+<h3 id="speqlite-state-export"><code>speqlite state export</code><a class="headerlink" href="#speqlite-state-export" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>speqlite state export [flags]
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--format &lt;f&gt;</code></td>
+<td>Export format: <code>json</code>, <code>snapshot</code> (default: <code>json</code>)</td>
+</tr>
+<tr>
+<td><code>--output &lt;path&gt;</code></td>
+<td>Output file (default: stdout)</td>
+</tr>
+</tbody>
+</table>
+<p>Exports the complete state as JSON. Equivalent to the content of <code>state.snapshot.json</code>.</p>
+<h3 id="speqlite-state-transition"><code>speqlite state transition</code><a class="headerlink" href="#speqlite-state-transition" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>speqlite state transition &lt;spec-id&gt; --to &lt;status&gt; [flags]
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--to &lt;status&gt;</code></td>
+<td>Target status (required)</td>
+</tr>
+</tbody>
+</table>
+<p>Generates a plan entry for the status transition. Run <code>apply</code> to commit.</p>
+<hr />
+<h2 id="speqlite-export"><code>speqlite export</code><a class="headerlink" href="#speqlite-export" title="Permanent link">&para;</a></h2>
+<p>Export specs to formal verification languages.</p>
+<h3 id="synopsis_8">Synopsis<a class="headerlink" href="#synopsis_8" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>speqlite export [flags]
+</code></pre></div>
+<h3 id="flags_8">Flags<a class="headerlink" href="#flags_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--format</code></td>
+<td>string</td>
+<td>—</td>
+<td>Required. One of: <code>alloy</code>, <code>smtlib</code>, <code>tla</code>, <code>lean</code>, <code>datalog</code></td>
+</tr>
+<tr>
+<td><code>--output</code></td>
+<td>string</td>
+<td>stdout</td>
+<td>Output file path</td>
+</tr>
+<tr>
+<td><code>--status</code></td>
+<td>string</td>
+<td><code>verified</code></td>
+<td>Only export specs with this status</td>
+</tr>
+<tr>
+<td><code>--include-all</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Export all statuses</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Formal export stubs are included in the MVP binary but produce skeleton output only. Full expression generation is a post-MVP feature.</p>
+</div>
+<hr />
+<h2 id="speqlite-version"><code>speqlite version</code><a class="headerlink" href="#speqlite-version" title="Permanent link">&para;</a></h2>
+<p>Print version information.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>speqlite version
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>speqlite v0.1.0 (commit: abc1234, built: 2024-01-15)
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/mikesorae/speqlite" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
