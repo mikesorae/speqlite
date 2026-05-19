@@ -126,4 +126,3 @@ speqlite validate
 | [Plan & Apply](spec/plan-apply.md) | Plan diff format and apply workflow |
 | [File Structure](spec/file-structure.md) | `.spec/`, `specs/`, `scratch/` layout |
 | [Future Extensions](spec/future-extensions.md) | MCP server and formal language export |
-| [Implementation Plan](dev/implementation-plan.md) | Go packages, dependencies, build instructions |
